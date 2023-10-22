@@ -1,0 +1,31 @@
+*{
+    box-sizing: border-box;
+}
+.sectionSearch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.sectionSearch >*{
+    margin: 1rem 0;
+}
+.movieList{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* movie card */
+.card{
+    display: flex;
+    flex-direction: column;
+}
+.movieDetales{
+    display: flex;
+    flex-direction: row;
+}
+.pagination{
+    display: flex;
+    justify-content: center;
+}
