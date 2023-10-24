@@ -13,7 +13,7 @@ let isSortByDate = false;
 let isSortbyRate = false;
 
 sortByRate.addEventListener('click', ()=>{
-    
+
     if(isSortbyRate){
         isSortByDate = false;
         isSortbyRate = false;
