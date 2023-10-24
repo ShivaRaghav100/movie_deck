@@ -4,6 +4,44 @@ const api =`https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}&lang
 let currentpage =1;
 const prv = document.getElementById('prvBtn')
 const next = document.getElementById('nextBtn')
+const sortByDate =  document.getElementById('sortBydate');
+const sortByRate = document.getElementById('sortByRate');
+let currentmovieData =''
+let sortByDateMovieData =''
+let sortByRateMovieData = ''
+let isSortByDate = false;
+let isSortbyRate = false;
+
+sortByRate.addEventListener('click', ()=>{
+    
+    if(isSortbyRate){
+        isSortByDate = false;
+        isSortbyRate = false;
+        updateMOviePage(currentmovieData)
+        return;
+    }
+    isSortByDate = false;
+    isSortbyRate = true;
+    if(!sortByRateMovieData){
+        sortByRateMovieData=SortMovieHandler([...currentmovieData], 'rating')
+    }
+    updateMOviePage(sortByRateMovieData)
+})
+// sortByDate.addEventListener('click', function  ( ){
+//     if(isSortByDate){
+//         isSortByDate = false;
+//         isSortbyRate = false;
+//         updateMOviePage(currentmovieData)
+//         return;
+//     }
+//     isSortByDate = true;
+//     isSortbyRate = false;
+//     if(!sortByDateMovieData){
+//         sortByDateMovieData=SortMovieHandler([...currentmovieData], 'date')
+//     }
+//     updateMOviePage(sortByDateMovieData)
+// })
+
 
 prv.addEventListener('click', ()=>{
     if(currentpage===1){
@@ -46,13 +84,34 @@ function updateMOviePage(movieArray){
     }
     movieListningTag.append(updateMovielist);
 }
+    
 async function getPaginationMovieDate(page){
+    resetPagehandler()
     movieListningTag.innerHTML = ""
     const responce = await fetch(`${api}${page}`);
     const movieData = await responce.json();
-    console.log(movieData);
+    currentmovieData = movieData.results;
+    // console.log(movieData);
     updateMOviePage(movieData.results);
 }
+function resetPagehandler(){
+    sortByDateMovieData =''
+    sortByRateMovieData = ''
+    isSortByDate = false;
+    isSortbyRate = false;
+}
+
+function  SortMovieHandler(MovieArr, sortBy){
+    let sortingKey =''
+    if(sortBy==='rating'){
+        sortingKey = 'vote_average'
+    }
+    MovieArr.sort((movObjA,movObjB) =>{
+        return movObjA[sortingKey] - movObjB[sortingKey]
+    })
+    return MovieArr;
+}
+
 getPaginationMovieDate(currentpage);
 
 
