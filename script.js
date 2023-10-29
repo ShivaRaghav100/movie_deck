@@ -13,7 +13,6 @@ let isSortByDate = false;
 let isSortbyRate = false;
 
 sortByRate.addEventListener('click', ()=>{
-
     if(isSortbyRate){
         isSortByDate = false;
         isSortbyRate = false;
@@ -23,24 +22,24 @@ sortByRate.addEventListener('click', ()=>{
     isSortByDate = false;
     isSortbyRate = true;
     if(!sortByRateMovieData){
-        sortByRateMovieData=SortMovieHandler([...currentmovieData], 'rating')
+        sortByRateMovieData= SortMovieHandler([...currentmovieData], 'rating')
     }
     updateMOviePage(sortByRateMovieData)
 })
-// sortByDate.addEventListener('click', function  ( ){
-//     if(isSortByDate){
-//         isSortByDate = false;
-//         isSortbyRate = false;
-//         updateMOviePage(currentmovieData)
-//         return;
-//     }
-//     isSortByDate = true;
-//     isSortbyRate = false;
-//     if(!sortByDateMovieData){
-//         sortByDateMovieData=SortMovieHandler([...currentmovieData], 'date')
-//     }
-//     updateMOviePage(sortByDateMovieData)
-// })
+sortByDate.addEventListener('click',()=>{
+    if(isSortByDate){
+        isSortByDate = false;
+        isSortbyRate = false;
+        updateMOviePage(currentmovieData)
+        return;
+    }
+    isSortByDate = true;
+    isSortbyRate = false;
+    if(!sortByDateMovieData){
+        sortByDateMovieData=SortMovieHandler([...currentmovieData], 'date')
+    }
+    updateMOviePage(sortByDateMovieData)
+})
 
 
 prv.addEventListener('click', ()=>{
@@ -63,6 +62,10 @@ console.log(movieListningTag);
 
 function updateMOviePage(movieArray){
     const movieListCard = document.getElementById('movieListCard');
+
+    while (movieListCard.firstChild) {
+        movieListCard.firstChild.remove();
+    }
     // const updateMovielist = document.createDocumentFragment();
     for(let{title,vote_count,vote_average,poster_path} of movieArray){
         const div = document.createElement('div')
@@ -82,7 +85,7 @@ function updateMOviePage(movieArray){
         // updateMovielist.appendChild(div);
         movieListCard.appendChild(div)
     }
-    movieListningTag.append(updateMovielist);
+    // movieListningTag.append(updateMvielist);
 }
     
 async function getPaginationMovieDate(page){
@@ -102,13 +105,26 @@ function resetPagehandler(){
 }
 
 function  SortMovieHandler(MovieArr, sortBy){
+    console.log({MovieArr});
     let sortingKey =''
-    if(sortBy==='rating'){
+    
+    if(sortBy==='date'){
+        sortingKey = 'release_date'
+        MovieArr.sort((movObjA,movObjB) =>{
+            movObjA.epochTime = new Date(movObjA[sortingKey])
+            movObjB.epochTime = new Date(movObjB[sortingKey])
+            return movObjA.epochTime - movObjB.epochTime
+        })
+        return MovieArr;
+    }
+
+    else if(sortBy==='rating'){
         sortingKey = 'vote_average'
     }
     MovieArr.sort((movObjA,movObjB) =>{
         return movObjA[sortingKey] - movObjB[sortingKey]
     })
+    console.log({MovieArr});
     return MovieArr;
 }
 
