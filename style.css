@@ -35,34 +35,39 @@ body{
     color:#fff;
     border: 2px solid red;
     border-radius: 5px;
-    height: 300px;
-    width: 200px;
+    height: 400px;
+    width: 220px;
 }
 .card > img{
-    height: 10rem;
+    height: 15rem;
     width: 1;
 }
-.movieDetales{
-    display: flex;
-    flex-direction: column;
-    width: 8rem;
-    height: 200px;
-    /* background: lightcoral; */
-}
- span{
+
+span{
+    font-size: large;
     height: 80px;
     padding: 10px 5px;
 }
 .detail{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
 }
 .detail > *{
     height: inherit;
 }
+.movieDetales{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* background: lightcoral; */
+}
+i{
+    font-size: 30px;
+    color: red;
+}
 .voterate{
-    padding: 5px 20px;
+    padding: 5px 10px;
     /* background: palegreen; */
 }
 /* .icon{

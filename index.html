@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Movie Dick</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,8 +13,8 @@
     </header>
     <section class="sectionSearch">
         <form  class="movieSearch"> 
-            <input type="text" placeholder="Search By Name">
-            <button>Search</button>
+            <input type="text" id="searchInput" placeholder="Search By Name">
+            <button id="searchButton">Search</button>
         </form>
         <div>
             <button id="sortBydate">Sort by date (oldest to latest)</button>
@@ -24,8 +25,8 @@
 
     <section class="movieDisplaySection">
         <div class="movieCostm">
-            <button>All</button>
-            <button>Favorites</button>
+            <button id="all">All</button>
+            <button  id="favorites" >Favorites</button>
         </div>
 
         <section class="movieList" id="movieListCard">
@@ -42,6 +43,10 @@
                     <span class="icon">icon</span>
                 </div>
             </div> -->
+        </section>
+
+        <section class="favMovieSection">
+
         </section>
 
         <div class="pagination">
