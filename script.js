@@ -230,6 +230,13 @@ async function getPaginationMovieDate(page){
     // const all = document.getElementById('all')
     // all.addEventListener('click', updateMOviePage(movieData.results))
 }
+
+
+
+
+
+
+
 function resetPagehandler(){
     sortByDateMovieData =''
     sortByRateMovieData = ''
