@@ -3,7 +3,7 @@ const api = `https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}&lan
 
 const searchApi = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&query=`;
 
-let currentpage = 1;
+let currentpage = 3;
 const prv = document.getElementById("prvBtn");
 const next = document.getElementById("nextBtn");
 const sortByDate = document.getElementById("sortBydate");
@@ -17,11 +17,12 @@ let isSortbyRate = false;
 const searchInput = document.getElementById("searchInput");
 const searchButton = document.getElementById("searchButton");
 
-searchButton.addEventListener("click", async function () {
+searchButton.addEventListener("click", async function (e) {
+  e.preventDefault()
   const searchData = searchInput.value;
   const data = await fetch(searchApi + searchData);
   const movies = await data.json();
-  updateMOviePage(movies);
+  updateMOviePage(movies.results);
 });
 
 sortByRate.addEventListener("click", () => {
@@ -54,14 +55,14 @@ sortByDate.addEventListener("click", () => {
 });
 
 prv.addEventListener("click", () => {
-  if (currentpage === 1) {
+  if (currentpage === 3) {
     return;
   }
   currentpage--;
   getPaginationMovieDate(currentpage);
 });
 next.addEventListener("click", () => {
-  if (currentpage === 100) {
+  if (currentpage === 10) {
     return;
   }
   currentpage++;
@@ -83,9 +84,10 @@ function updateMOviePage(movieArray) {
     vote_count,
     vote_average,
     poster_path,
-    isFavourite,
     id,
   } of movieArray) {
+    let favMovies = Object.values(JSON.parse(localStorage.getItem("favMovieList")));
+    let isFavourite = favMovies.find((favMovie)=>{return favMovie.id===id})
     const div = document.createElement("div");
     div.innerHTML = `<div class="card">
                                 <img src="https://image.tmdb.org/t/p/original/${poster_path}" alt="asdfghjkl">

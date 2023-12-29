@@ -90,6 +90,13 @@ button,input{
     padding: 10px;
     cursor: pointer;
 }
+footer{
+    display: flex;
+    justify-content:end;
+    margin: 5px 20px;
+    color: #fff;
+
+}
 @media screen and (max-width:400px) {
     .header{
         font-size: 1rem;
@@ -97,7 +104,14 @@ button,input{
     }
     button,input{
         font-size: .9rem;
-        margin: .1rem 1rem;
+        margin: 0 1rem;
         padding: 5px 8px;
+    }
+    .sectionSearch >*{
+        margin: .4rem 0;
+    }
+    .movieCostm{
+        display: flex;
+        justify-content: space-between;
     }
 }
