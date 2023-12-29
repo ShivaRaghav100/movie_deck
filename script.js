@@ -184,6 +184,7 @@ async function getPaginationMovieDate(page) {
   // console.log(movieData);
   updateMOviePage(movieData.results);
 
+  
   // const all = document.getElementById('all')
   // all.addEventListener('click', updateMOviePage(movieData.results))
 }
