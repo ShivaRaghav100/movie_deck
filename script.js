@@ -1,6 +1,6 @@
 const api_key = "f531333d637d0c44abc85b3e74db2186";
 const api = `https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}&language=en-US&page=`;
-let currentpage = 1;
+let currentpage = 3;
 const prv = document.getElementById("prvBtn");
 const next = document.getElementById("nextBtn");
 const sortByDate = document.getElementById("sortBydate");
@@ -58,14 +58,14 @@ sortByDate.addEventListener("click", () => {
 });
 
 prv.addEventListener("click", () => {
-  if (currentpage === 1) {
+  if (currentpage === 3) {
     return;
   }
   currentpage--;
   getPaginationMovieDate(currentpage);
 });
 next.addEventListener("click", () => {
-  if (currentpage === 3) {
+  if (currentpage === 10) {
     return;
   }
   currentpage++;
