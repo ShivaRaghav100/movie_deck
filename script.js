@@ -1,12 +1,6 @@
 const api_key = "f531333d637d0c44abc85b3e74db2186";
-const api  = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&query=`
-// const api = `https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}&language=en-US&page=`;
-
-const searchApi = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&query=`;
-
-
-
-let currentpage = 3;
+const api = `https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}&language=en-US&page=`;
+let currentpage = 1;
 const prv = document.getElementById("prvBtn");
 const next = document.getElementById("nextBtn");
 const sortByDate = document.getElementById("sortBydate");
@@ -20,12 +14,17 @@ let isSortbyRate = false;
 const searchInput = document.getElementById("searchInput");
 const searchButton = document.getElementById("searchButton");
 
-searchButton.addEventListener("click", async function (e) {
-  e.preventDefault()
+searchButton.addEventListener("click", function () {
+  const movieListCard = document.getElementById("movieListCard");
   const searchData = searchInput.value;
-  const data = await fetch(searchApi + searchData);
-  const movies = await data.json();
-  updateMOviePage(movies.results);
+  movieListCard.innerHTML = "";
+
+  // if (data.Search) {
+  //     data.Search.forEach(movie => {
+  //         const li = document.createElement("li");
+  //         li.textContent = `${movie.Title} (${movie.Year})`;
+  //         movieList.appendChild(li);
+  //     });
 });
 
 sortByRate.addEventListener("click", () => {
@@ -58,14 +57,14 @@ sortByDate.addEventListener("click", () => {
 });
 
 prv.addEventListener("click", () => {
-  if (currentpage === 3) {
+  if (currentpage === 1) {
     return;
   }
   currentpage--;
   getPaginationMovieDate(currentpage);
 });
 next.addEventListener("click", () => {
-  if (currentpage === 10) {
+  if (currentpage === 100) {
     return;
   }
   currentpage++;
@@ -87,10 +86,9 @@ function updateMOviePage(movieArray) {
     vote_count,
     vote_average,
     poster_path,
+    isFavourite,
     id,
   } of movieArray) {
-    let favMovies = Object.values(JSON.parse(localStorage.getItem("favMovieList")));
-    let isFavourite = favMovies.find((favMovie)=>{return favMovie.id===id})
     const div = document.createElement("div");
     div.innerHTML = `<div class="card">
                                 <img src="https://image.tmdb.org/t/p/original/${poster_path}" alt="asdfghjkl">
@@ -165,18 +163,32 @@ function addToFavListHandler(e) {
   console.log(localMovieStorage);
   // updateMOviePage(fruits)
 }
-const favbtn = document.getElementById("favorites");
-const allbtn = document.getElementById("all");
+const favbtn = document.getElementById("favorites").addEventListener;
+// function displyFevPage(movieArray){
+//     const favMovieSection = document.getElementById('favMovieSection');
 
-favbtn.addEventListener("click", () => {
-  let movies = Object.values(JSON.parse(localStorage.getItem("favMovieList")));
-  updateMOviePage(movies);
-});
-
-allbtn.addEventListener("click", () => {
-    updateMOviePage(currentmovieData);
-//   getPaginationMovieDate(currentpage);
-});
+//     while (favMovieSection.firstChild) {
+//         favMovieSection.firstChild.remove();
+//     }
+//     // const updateMovielist = document.createDocumentFragment();
+//     for(let{title,vote_count,vote_average,poster_path,isFavourite,id} of movieArray){
+//         const div = document.createElement('div')
+//         div.innerHTML = `<div class="card">
+//                                 <img src="https://image.tmdb.org/t/p/original/${poster_path}" alt="asdfghjkl">
+//                                 <div class="detail">
+//                                     <div class="movieDetales">
+//                                         <span>${title}</span>
+//                                         <i class="fa-heart ${isFavourite ? 'fa-solid':'fa-regular'}" id="${id}" data-is-favourite="${isFavourite}"></i>
+//                                     </div>
+//                                     <div class="voterate">
+//                                         <span>Vote:${vote_count}</span>
+//                                         <span>Rating:${vote_average}</span>
+//                                     </div>
+//                                 </div>
+//                             </div>`
+//         // updateMovielist.appendChild(div);
+//         favMovieSection.appendChild(div)
+//     }
 
 async function getPaginationMovieDate(page) {
   resetPagehandler();
@@ -187,7 +199,6 @@ async function getPaginationMovieDate(page) {
   // console.log(movieData);
   updateMOviePage(movieData.results);
 
-  
   // const all = document.getElementById('all')
   // all.addEventListener('click', updateMOviePage(movieData.results))
 }
