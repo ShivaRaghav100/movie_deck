@@ -4,7 +4,6 @@ const api = `https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}&lan
 const searchApi = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&query=`;
 
 
-
 let currentpage = 3;
 const prv = document.getElementById("prvBtn");
 const next = document.getElementById("nextBtn");
