@@ -15,6 +15,7 @@ let sortByRateMovieData = "";
 let isSortByDate = false;
 let isSortbyRate = false;
 
+
 const searchInput = document.getElementById("searchInput");
 const searchButton = document.getElementById("searchButton");
 
