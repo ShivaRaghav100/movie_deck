@@ -14,18 +14,6 @@ let isSortbyRate = false;
 const searchInput = document.getElementById("searchInput");
 const searchButton = document.getElementById("searchButton");
 
-searchButton.addEventListener("click", function () {
-  const movieListCard = document.getElementById("movieListCard");
-  const searchData = searchInput.value;
-  movieListCard.innerHTML = "";
-
-  // if (data.Search) {
-  //     data.Search.forEach(movie => {
-  //         const li = document.createElement("li");
-  //         li.textContent = `${movie.Title} (${movie.Year})`;
-  //         movieList.appendChild(li);
-  //     });
-});
 
 sortByRate.addEventListener("click", () => {
   if (isSortbyRate) {
