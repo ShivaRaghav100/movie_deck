@@ -64,7 +64,7 @@ prv.addEventListener("click", () => {
   getPaginationMovieDate(currentpage);
 });
 next.addEventListener("click", () => {
-  if (currentpage === 100) {
+  if (currentpage === 3) {
     return;
   }
   currentpage++;
@@ -86,9 +86,10 @@ function updateMOviePage(movieArray) {
     vote_count,
     vote_average,
     poster_path,
-    isFavourite,
     id,
   } of movieArray) {
+    let favMovies = Object.values(JSON.parse(localStorage.getItem("favMovieList")));
+    let isFavourite = favMovies.find((favMovie)=>{return favMovie.id===id})
     const div = document.createElement("div");
     div.innerHTML = `<div class="card">
                                 <img src="https://image.tmdb.org/t/p/original/${poster_path}" alt="asdfghjkl">
