@@ -163,8 +163,19 @@ function addToFavListHandler(e) {
   console.log(localMovieStorage);
   // updateMOviePage(fruits)
 }
-const favbtn = document.getElementById("favorites").addEventListener;
 
+const favbtn = document.getElementById("favorites");
+const allbtn = document.getElementById("all");
+
+favbtn.addEventListener("click", () => {
+  let movies = Object.values(JSON.parse(localStorage.getItem("favMovieList")));
+  updateMOviePage(movies);
+});
+
+allbtn.addEventListener("click", () => {
+    updateMOviePage(currentmovieData);
+//   getPaginationMovieDate(currentpage);
+});
 
 
 async function getPaginationMovieDate(page) {
