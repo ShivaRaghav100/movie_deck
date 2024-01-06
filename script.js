@@ -232,4 +232,5 @@ function SortMovieHandler(MovieArr, sortBy) {
   return MovieArr;
 }
 
+
 getPaginationMovieDate(currentpage);
