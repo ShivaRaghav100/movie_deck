@@ -163,33 +163,18 @@ function addToFavListHandler(e) {
   console.log(localMovieStorage);
   // updateMOviePage(fruits)
 }
-const favbtn = document.getElementById("favorites").addEventListener;
-// function displyFevPage(movieArray){
-//     const favMovieSection = document.getElementById('favMovieSection');
+const favbtn = document.getElementById("favorites");
+const allbtn = document.getElementById("all");
 
-//     while (favMovieSection.firstChild) {
-//         favMovieSection.firstChild.remove();
-//     }
-//     // const updateMovielist = document.createDocumentFragment();
-//     for(let{title,vote_count,vote_average,poster_path,isFavourite,id} of movieArray){
-//         const div = document.createElement('div')
-//         div.innerHTML = `<div class="card">
-//                                 <img src="https://image.tmdb.org/t/p/original/${poster_path}" alt="asdfghjkl">
-//                                 <div class="detail">
-//                                     <div class="movieDetales">
-//                                         <span>${title}</span>
-//                                         <i class="fa-heart ${isFavourite ? 'fa-solid':'fa-regular'}" id="${id}" data-is-favourite="${isFavourite}"></i>
-//                                     </div>
-//                                     <div class="voterate">
-//                                         <span>Vote:${vote_count}</span>
-//                                         <span>Rating:${vote_average}</span>
-//                                     </div>
-//                                 </div>
-//                             </div>`
-//         // updateMovielist.appendChild(div);
-//         favMovieSection.appendChild(div)
-//     }
+favbtn.addEventListener("click", () => {
+  let movies = Object.values(JSON.parse(localStorage.getItem("favMovieList")));
+  updateMOviePage(movies);
+});
 
+allbtn.addEventListener("click", () => {
+    updateMOviePage(currentmovieData);
+//   getPaginationMovieDate(currentpage);
+});
 async function getPaginationMovieDate(page) {
   resetPagehandler();
   movieListningTag.innerHTML = "";
