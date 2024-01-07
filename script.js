@@ -216,6 +216,11 @@ function SortMovieHandler(MovieArr, sortBy) {
 }
 
 
+
+
+getPaginationMovieDate(currentpage);
+
+
 const searchApi = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&query=`;
 
 const searchInput = document.getElementById("searchInput");
@@ -228,5 +233,3 @@ searchButton.addEventListener("click", async function (e) {
   const movies = await data.json();
   updateMOviePage(movies.results);
 });
-
-getPaginationMovieDate(currentpage);
