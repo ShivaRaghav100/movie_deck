@@ -215,6 +215,9 @@ function SortMovieHandler(MovieArr, sortBy) {
   return MovieArr;
 }
 
+
+const searchApi = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&query=`;
+
 const searchInput = document.getElementById("searchInput");
 const searchButton = document.getElementById("searchButton");
 
