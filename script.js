@@ -11,9 +11,6 @@ let sortByRateMovieData = "";
 let isSortByDate = false;
 let isSortbyRate = false;
 
-const searchInput = document.getElementById("searchInput");
-const searchButton = document.getElementById("searchButton");
-
 searchButton.addEventListener("click", function () {
   const movieListCard = document.getElementById("movieListCard");
   const searchData = searchInput.value;
@@ -217,5 +214,16 @@ function SortMovieHandler(MovieArr, sortBy) {
   console.log({ MovieArr });
   return MovieArr;
 }
+
+const searchInput = document.getElementById("searchInput");
+const searchButton = document.getElementById("searchButton");
+
+searchButton.addEventListener("click", async function (e) {
+  e.preventDefault()
+  const searchData = searchInput.value;
+  const data = await fetch(searchApi + searchData);
+  const movies = await data.json();
+  updateMOviePage(movies.results);
+});
 
 getPaginationMovieDate(currentpage);
