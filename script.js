@@ -105,6 +105,8 @@ function updateMOviePage(movieArray) {
   }
 }
 
+
+
 function addToFavListHandler(e) {
   let isremove = false;
   if (e.target.dataset.isFavourite == "true") {
