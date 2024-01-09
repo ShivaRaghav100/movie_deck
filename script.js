@@ -73,7 +73,9 @@ function updateMOviePage(movieArray) {
     poster_path,
     id,
   } of movieArray) {
-    let favMovies = Object.values(JSON.parse(localStorage.getItem("favMovieList")));
+    let localStorageFav = localStorage.getItem("favMovieList") || "{}"
+    console.log({localStorageFav});
+    let favMovies = Object.values(JSON.parse(localStorageFav));
     let isFavourite = favMovies.find((favMovie)=>{return favMovie.id===id})
     const div = document.createElement("div");
     div.innerHTML = `<div class="card">
@@ -209,15 +211,15 @@ function SortMovieHandler(MovieArr, sortBy) {
 getPaginationMovieDate(currentpage);
 
 
-// const searchApi = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&query=`;
+const searchApi = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&include_adult=false&language=en-US&page=1&query=`;
 
-// const searchInput = document.getElementById("searchInput");
-// const searchButton = document.getElementById("searchButton");
+const searchInput = document.getElementById("searchInput");
+const searchButton = document.getElementById("searchButton");
 
-// searchButton.addEventListener("click", async function (e) {
-//   e.preventDefault()
-//   const searchData = searchInput.value;
-//   const data = await fetch(searchApi + searchData);
-//   const movies = await data.json();
-//   updateMOviePage(movies.results);
-// });
+searchButton.addEventListener("click", async function (e) {
+  e.preventDefault()
+  const searchData = searchInput.value;
+  const data = await fetch(searchApi + searchData);
+  const movies = await data.json();
+  updateMOviePage(movies.results);
+});
