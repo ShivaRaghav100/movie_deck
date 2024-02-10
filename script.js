@@ -1,5 +1,5 @@
 const api_key = "f531333d637d0c44abc85b3e74db2186";
-const api = `https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}&language=en-US&page=`;
+const api = `https://api.themoviedb.org/3/movie/top_rated?api_key=f531333d637d0c44abc85b3e74db2186&language=en-US&page=1`;
 let currentpage = 1;
 const prv = document.getElementById("prvBtn");
 const next = document.getElementById("nextBtn");
@@ -26,6 +26,7 @@ sortByRate.addEventListener("click", () => {
   }
   updateMOviePage(sortByRateMovieData);
 });
+
 sortByDate.addEventListener("click", () => {
   if (isSortByDate) {
     isSortByDate = false;
@@ -153,6 +154,9 @@ function addToFavListHandler(e) {
   console.log(localMovieStorage);
   // updateMOviePage(fruits)
 }
+
+
+
 const favbtn = document.getElementById("favorites");
 const allbtn = document.getElementById("all");
 
@@ -163,7 +167,6 @@ favbtn.addEventListener("click", () => {
 
 allbtn.addEventListener("click", () => {
     updateMOviePage(currentmovieData);
-//   getPaginationMovieDate(currentpage);
 });
 async function getPaginationMovieDate(page) {
   resetPagehandler();
@@ -171,11 +174,8 @@ async function getPaginationMovieDate(page) {
   const responce = await fetch(`${api}${page}`);
   const movieData = await responce.json();
   currentmovieData = movieData.results;
-  // console.log(movieData);
+  // console.log(movieData
   updateMOviePage(movieData.results);
-
-  // const all = document.getElementById('all')
-  // all.addEventListener('click', updateMOviePage(movieData.results))
 }
 
 function resetPagehandler() {
@@ -225,3 +225,22 @@ searchButton.addEventListener("click", async function (e) {
   const movies = await data.json();
   updateMOviePage(movies.results);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
